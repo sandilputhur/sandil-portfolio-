@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandil P. T | Creative Designer, Illustrator & Filmmaker</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #06040e;
+            --glass-bg: rgba(255, 255, 255, 0.04);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --glass-hover: rgba(255, 255, 255, 0.08);
+            --accent-1: #ff2a85;
+            --accent-2: #7b2cbf;
+            --accent-3: #00f5d4;
+            --accent-4: #ffbe0b;
+            --text-light: #ffffff;
+            --text-dim: #b8b2c8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- Custom Interactive Cursor Glow --- */
+        .cursor-glow {
+            position: fixed;
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(0, 245, 212, 0.15) 0%, rgba(255, 42, 133, 0.08) 45%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            transition: width 0.3s, height 0.3s;
+        }
+
+        /* --- Animated Colorful Luxury Background --- */
+        .bg-blobs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            filter: blur(95px);
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: moveBlobs 18s infinite alternate ease-in-out;
+        }
+
+        .blob-1 {
+            width: 450px;
+            height: 450px;
+            background: var(--accent-1);
+            top: -10%;
+            left: -5%;
+        }
+
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--accent-2);
+            bottom: -15%;
+            right: -5%;
+            animation-delay: -5s;
+        }
+
+        .blob-3 {
+            width: 350px;
+            height: 350px;
+            background: var(--accent-3);
+            top: 40%;
+            left: 45%;
+            opacity: 0.3;
+            animation-delay: -10s;
+        }
+
+        @keyframes moveBlobs {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(80px, -60px) scale(1.15); }
+            100% { transform: translate(-60px, 80px) scale(0.9); }
+        }
+
+        /* --- Floating Navigation Dock --- */
+        header {
+            position: fixed;
+            top: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            background: rgba(13, 10, 26, 0.82);
+            backdrop-filter: blur(22px);
+            border: 1px solid var(--glass-border);
+            padding: 8px 14px;
+            border-radius: 50px;
+            display: flex;
+            gap: 6px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-dim);
+            padding: 11px 20px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .nav-btn:hover {
+            color: var(--text-light);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            color: var(--text-light);
+            box-shadow: 0 8px 20px rgba(255, 42, 133, 0.4);
+        }
+
+        /* --- Main Container & Page Transitions --- */
+        main {
+            max-width: 1250px;
+            margin: 125px auto 60px;
+            padding: 0 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-section {
+            display: none;
+            opacity: 0;
+            transform: translateY(30px) scale(0.98);
+        }
+
+        .page-section.active-section {
+            display: block;
+            animation: sectionEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes sectionEntrance {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* --- HOME SECTION --- */
+        .hero-box {
+            min-height: 75vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(25px);
+            border-radius: 35px;
+            padding: 60px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .badge {
+            background: rgba(0, 245, 212, 0.12);
+            border: 1px solid var(--accent-3);
+            color: var(--accent-3);
+            padding: 8px 22px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.6rem, 6vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #ffffff, var(--accent-3), var(--accent-1), var(--accent-4));
+            background-size: 300% 300%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientFlow 6s ease infinite;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            max-width: 720px;
+            line-height: 1.75;
+            margin-bottom: 35px;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 45px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            color: white;
+            border: none;
+            padding: 15px 34px;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 10px 25px rgba(255, 42, 133, 0.4);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 15px 35px rgba(255, 42, 133, 0.6);
+        }
+
+        .btn-outline {
+            background: var(--glass-bg);
+            color: white;
+            border: 1px solid var(--glass-border);
+            padding: 15px 32px;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent-3);
+            color: var(--accent-3);
+            transform: translateY(-4px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 30px;
+            width: 100%;
+            max-width: 750px;
+        }
+
+        .stat-item h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            color: var(--accent-3);
+        }
+
+        .stat-item p {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+
+        /* --- SECTION TITLES --- */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+
+        .section-header p {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+        }
+
+        /* --- GLASS CARDS & 3D TILT --- */
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(20px);
+            border-radius: 28px;
+            padding: 35px;
+            transition: border-color 0.4s, box-shadow 0.4s;
+            transform-style: preserve-3d;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(0, 245, 212, 0.35);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+        }
+
+        /* --- ABOUT ME SECTION --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.6fr;
+            gap: 35px;
+        }
+
+        .profile-visual {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avatar-circle {
+            width: 175px;
+            height: 175px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-3), var(--accent-1));
+            padding: 4px;
+            margin-bottom: 22px;
+            position: relative;
+            box-shadow: 0 12px 30px rgba(255, 42, 133, 0.3);
+        }
+
+        .avatar-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #140f26;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--accent-3);
+            overflow: hidden;
+        }
+
+        .avatar-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .skills-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .skill-pill {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--glass-border);
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 0.92rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .skill-pill:hover {
+            background: rgba(123, 44, 191, 0.35);
+            border-color: var(--accent-3);
+            transform: translateY(-3px);
+        }
+
+        /* --- EDUCATION & EXPERIENCE SECTION --- */
+        .timeline-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .timeline-box h3 {
+            font-size: 1.55rem;
+            margin-bottom: 28px;
+            color: var(--accent-3);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 30px;
+            border-left: 2px solid var(--accent-1);
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent-3);
+            box-shadow: 0 0 12px var(--accent-3);
+        }
+
+        .time-year {
+            display: inline-block;
+            background: rgba(255, 42, 133, 0.18);
+            color: var(--accent-1);
+            padding: 4px 14px;
+            border-radius: 15px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .timeline-item h4 {
+            font-size: 1.25rem;
+            margin-bottom: 6px;
+        }
+
+        .timeline-item p {
+            color: var(--text-dim);
+            line-height: 1.65;
+            font-size: 0.96rem;
+        }
+
+        /* --- WORK / PORTFOLIO SECTION --- */
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 45px;
+        }
+
+        .filter-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-light);
+            padding: 11px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.35s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--accent-3);
+            transform: translateY(-3px);
+        }
+
+        .filter-btn.active-filter {
+            background: linear-gradient(135deg, var(--accent-3), var(--accent-2));
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 8px 25px rgba(0, 245, 212, 0.35);
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+            gap: 28px;
+        }
+
+        .work-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.35s ease;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .work-card:hover {
+            border-color: var(--accent-3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.65);
+        }
+
+        .work-thumb {
+            height: 230px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .work-thumb img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            z-index: 1;
+        }
+
+        .work-card:hover .work-thumb img {
+            transform: scale(1.08);
+        }
+
+        .work-software-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(7, 5, 16, 0.82);
+            backdrop-filter: blur(10px);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--accent-3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            z-index: 2;
+        }
+
+        .multi-img-badge {
+            position: absolute;
+            bottom: 12px;
+            left: 15px;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            color: var(--accent-4);
+            border: 1px solid rgba(255, 190, 11, 0.35);
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .work-info {
+            padding: 25px;
+        }
+
+        .work-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .work-info p {
+            color: var(--text-dim);
+            font-size: 0.94rem;
+            line-height: 1.55;
+            margin-bottom: 16px;
+        }
+
+        .view-more-link {
+            color: var(--accent-1);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* --- SP FILMS & MUSIC SECTION --- */
+        .spfilms-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 30px;
+        }
+
+        .film-showcase-card {
+            background: linear-gradient(145deg, rgba(58, 12, 163, 0.25), rgba(247, 37, 133, 0.12));
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 28px;
+            margin-bottom: 22px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .film-showcase-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .music-track {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--glass-border);
+            padding: 16px 20px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            transition: 0.3s;
+        }
+
+        .music-track:hover {
+            border-color: var(--accent-4);
+            background: rgba(255, 190, 11, 0.06);
+        }
+
+        .track-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .play-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-4));
+            border: none;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .equalizer {
+            display: flex;
+            gap: 3px;
+            align-items: flex-end;
+            height: 18px;
+        }
+
+        .bar {
+            width: 3px;
+            background: var(--accent-3);
+            border-radius: 2px;
+            height: 4px;
+            transition: 0.2s;
+        }
+
+        .playing .bar {
+            animation: eqBounce 0.8s infinite ease-in-out alternate;
+        }
+
+        .playing .bar:nth-child(2) { animation-delay: 0.2s; }
+        .playing .bar:nth-child(3) { animation-delay: 0.4s; }
+        .playing .bar:nth-child(4) { animation-delay: 0.1s; }
+
+        @keyframes eqBounce {
+            0% { height: 4px; }
+            100% { height: 18px; }
+        }
+
+        /* --- CONTACT SECTION --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 35px;
+        }
+
+        .social-links-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 25px;
+        }
+
+        .social-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 18px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .social-card:hover {
+            border-color: var(--accent-3);
+            transform: translateY(-4px);
+            background: rgba(0, 245, 212, 0.08);
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-input:focus {
+            border-color: var(--accent-3);
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        /* --- MODAL FOR PROJECT DETAILS (MULTI-IMAGE GALLERY) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 3, 12, 0.9);
+            backdrop-filter: blur(18px);
+            z-index: 999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.show-modal {
+            display: flex;
+            animation: sectionEntrance 0.35s ease forwards;
+        }
+
+        .modal-box {
+            background: #130f24;
+            border: 1px solid var(--accent-3);
+            max-width: 900px;
+            width: 100%;
+            border-radius: 30px;
+            padding: 38px;
+            position: relative;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+            max-height: 92vh;
+            overflow-y: auto;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 10;
+        }
+
+        .close-modal:hover {
+            background: var(--accent-1);
+            transform: rotate(90deg);
+        }
+
+        /* Multi-Image Grid inside Modal */
+        .modal-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .gallery-item {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            transition: 0.35s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gallery-item:hover {
+            border-color: var(--accent-4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            max-height: 520px;
+            object-fit: contain;
+            background: #0b0816;
+            cursor: zoom-in;
+            display: block;
+        }
+
+        .gallery-caption {
+            padding: 12px 16px;
+            font-size: 0.88rem;
+            color: var(--text-dim);
+            background: rgba(0, 0, 0, 0.45);
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .placeholder-card {
+            padding: 35px 20px;
+            text-align: center;
+            color: var(--text-dim);
+            border: 1px dashed var(--glass-border);
+            border-radius: 18px;
+        }
+
+        /* Fullscreen Image Zoom Lightbox */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.94);
+            z-index: 1100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            cursor: zoom-out;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        .lightbox-overlay img {
+            max-width: 95%;
+            max-height: 92vh;
+            border-radius: 14px;
+            box-shadow: 0 0 40px rgba(0, 245, 212, 0.25);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .about-grid, .timeline-container, .spfilms-grid, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            header {
+                width: 94%;
+                justify-content: space-around;
+                padding: 8px 10px;
+            }
+            .nav-btn {
+                padding: 10px 14px;
+                font-size: 0.85rem;
+            }
+            .nav-btn span {
+                display: none;
+            }
+            .cursor-glow {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Interactive Mouse Glow -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- Colorful Animated Blobs -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header>
+        <button class="nav-btn active" onclick="switchTab('home', this)" title="Home">
+            <i class="fa-solid fa-house"></i> <span>Home</span>
+        </button>
+        <button class="nav-btn" onclick="switchTab('about', this)" title="About Me">
+            <i class="fa-solid fa-user-astronaut"></i> <span>About</span>
+        </button>
+        <button class="nav-btn" onclick="switchTab('education', this)" title="Education & Experience">
+            <i class="fa-solid fa-graduation-cap"></i> <span>Education</span>
+        </button>
+        <button class="nav-btn" onclick="switchTab('works', this)" title="My Works">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> <span>My Works</span>
+        </button>
+        <button class="nav-btn" onclick="switchTab('spfilms', this)" title="SP Films & Music">
+            <i class="fa-solid fa-film"></i> <span>SP Films</span>
+        </button>
+        <button class="nav-btn" onclick="switchTab('contact', this)" title="Contact Me">
+            <i class="fa-solid fa-paper-plane"></i> <span>Contact</span>
+        </button>
+    </header>
+
+    <main>
+        <!-- ================= 1. HOME SECTION ================= -->
+        <section id="home" class="page-section active-section">
+            <div class="hero-box tilt-card">
+                <div class="badge"><i class="fa-solid fa-bolt"></i> Graphic Designer • Vector Illustrator • Filmmaker & Composer</div>
+                <h1 class="hero-title">SANDIL P. T</h1>
+                <p class="hero-subtitle">
+                    Crafting unforgettable visual worlds through Vector Illustration, 3D Assets, Editorial Print Design, and Filmmaking & Original Music Integration via <strong>SP Films</strong>.
+                </p>
+                <div class="cta-group">
+                    <button class="btn-primary" onclick="triggerNav('works')">
+                        Explore My Works <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    <button class="btn-outline" onclick="triggerNav('spfilms')">
+                        <i class="fa-solid fa-play"></i> SP Films & Music
+                    </button>
+                    <a href="assets/Professional CV.pdf" download class="btn-outline">
+                        <i class="fa-solid fa-download"></i> Download CV
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h4>50+</h4>
+                        <p>Brand & Print Projects</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>SP Films</h4>
+                        <p>Short Films & Trailers</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Original</h4>
+                        <p>Malayalam Music Tracks</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 2. ABOUT ME SECTION ================= -->
+        <section id="about" class="page-section">
+            <div class="section-header">
+                <h2>About Me</h2>
+                <p>My creative identity, tools, and artistic vision</p>
+            </div>
+
+            <div class="about-grid">
+                <!-- Left Profile Card -->
+                <div class="glass-card profile-visual tilt-card">
+                    <div class="avatar-circle">
+                        <div class="avatar-inner">
+                            <img src="assets/profile.jpg" alt="Sandil P. T. Puthur" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <span style="display:none;">SP</span>
+                        </div>
+                    </div>
+                    <h3>Sandil P. T</h3>
+                    <p style="color: var(--accent-3); margin: 6px 0 14px; font-weight: 600;">Graphic Designer & Visual Media Artist</p>
+                    <p style="color: var(--text-dim); font-size: 0.95rem; line-height: 1.65; margin-bottom: 22px;">
+                        Founder of <strong>SP Films</strong> — a creative venture uniting visual design, short films, and original Malayalam musical compositions.
+                    </p>
+                    <a href="assets/Professional Resume.pdf" download class="btn-primary" style="padding: 12px 26px; font-size: 0.92rem;">
+                        <i class="fa-solid fa-file-pdf"></i> Download Resume
+                    </a>
+                </div>
+
+                <!-- Right Bio & Software Arsenal -->
+                <div class="glass-card tilt-card">
+                    <h3 style="font-size: 1.6rem; margin-bottom: 15px; color: var(--accent-4);">
+                        Turning Imagination Into Visual Luxury
+                    </h3>
+                    <p style="color: var(--text-dim); line-height: 1.8; margin-bottom: 18px;">
+                        I am a Communication student at <strong>St. Joseph College of Communication</strong> specializing in Graphic Design, Digital Illustration, and Visual Media. From authoring and illustrating a 12-page children's storybook (<em>The Sea Book</em>) and designing the <em>"ചായാ (Chaya)"</em> specialty tea shop menu to crafting brand identities like <em>Magic City</em> and tetra-pack designs for <em>BABA Land</em>, I love blending storytelling with modern visual aesthetics.
+                    </p>
+                    <p style="color: var(--text-dim); line-height: 1.8; margin-bottom: 22px;">
+                        Beyond visual graphics, I write original Malayalam lyrics and produce hip-hop and background scores in <strong>FL Studio</strong>, bringing a complete audio-visual perspective to every project.
+                    </p>
+
+                    <h4 style="margin-bottom: 12px; color: var(--accent-3);">Creative Software & Arsenal:</h4>
+                    <div class="skills-tags">
+                        <div class="skill-pill"><i class="fa-solid fa-pen-nib" style="color:#ff9a00;"></i> Adobe Illustrator</div>
+                        <div class="skill-pill"><i class="fa-solid fa-wand-magic-sparkles" style="color:#31a8ff;"></i> Adobe Photoshop</div>
+                        <div class="skill-pill"><i class="fa-solid fa-book-open" style="color:#ff3366;"></i> Adobe InDesign</div>
+                        <div class="skill-pill"><i class="fa-solid fa-cube" style="color:#00f5d4;"></i> Autodesk Maya (3D)</div>
+                        <div class="skill-pill"><i class="fa-solid fa-music" style="color:#ffbe0b;"></i> FL Studio (Audio Production)</div>
+                        <div class="skill-pill"><i class="fa-solid fa-film" style="color:#ff2a85;"></i> Filmmaking & Direction</div>
+                        <div class="skill-pill"><i class="fa-solid fa-palette" style="color:#a855f7;"></i> Vector Art & Storyboarding</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 3. EDUCATION SECTION ================= -->
+        <section id="education" class="page-section">
+            <div class="section-header">
+                <h2>Education & Experience</h2>
+                <p>My academic foundation and creative industry journey</p>
+            </div>
+
+            <div class="timeline-container">
+                <!-- Academic Column -->
+                <div class="glass-card timeline-box tilt-card">
+                    <h3><i class="fa-solid fa-graduation-cap"></i> Academic Qualification</h3>
+                    
+                    <div class="timeline-item">
+                        <span class="time-year">Present • Degree</span>
+                        <h4>St. Joseph College of Communication</h4>
+                        <p>Pursuing Degree in Communication with specialization in Visual Media, Graphic Design, Vector Illustration, Editorial Design, and Multimedia Production.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="time-year">2017 – 2023</span>
+                        <h4>Gokulam Public School</h4>
+                        <p>Completed schooling with strong active participation in drawing, painting, visual arts, and creative cultural events.</p>
+                    </div>
+                </div>
+
+                <!-- Internship & Ventures Column -->
+                <div class="glass-card timeline-box tilt-card">
+                    <h3><i class="fa-solid fa-briefcase"></i> Industry Experience</h3>
+                    
+                    <div class="timeline-item">
+                        <span class="time-year">Completed May 2026</span>
+                        <h4>Internship — Digital Evolutions, Thiruvananthapuram</h4>
+                        <p>Completed intensive industry internship creating digital branding assets, promotional social media carousels, UI glassmorphism overlays, and client campaign visuals.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="time-year">2025 – Present</span>
+                        <h4>Founder & Creative Lead — SP Films</h4>
+                        <p>Leading an independent creative platform combining short filmmaking (<em>Birthstone</em>), commercial brand trailers (<em>Magic City</em>), poster key art, and original Malayalam musical compositions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 4. MY WORKS SECTION ================= -->
+        <section id="works" class="page-section">
+            <div class="section-header">
+                <h2>Interactive Work Showcase</h2>
+                <p>Filter by software or click any project card to view full project visuals</p>
+            </div>
+
+            <!-- Interactive Software Filter Buttons -->
+            <div class="filter-tabs">
+                <button class="filter-btn active-filter" onclick="filterWorks('all', this)">
+                    <i class="fa-solid fa-layer-group"></i> All Works
+                </button>
+                <button class="filter-btn" onclick="filterWorks('indesign', this)">
+                    <i class="fa-solid fa-book"></i> InDesign & Print
+                </button>
+                <button class="filter-btn" onclick="filterWorks('illustrator', this)">
+                    <i class="fa-solid fa-pen-nib"></i> Illustrator
+                </button>
+                <button class="filter-btn" onclick="filterWorks('photoshop', this)">
+                    <i class="fa-solid fa-image"></i> Photoshop
+                </button>
+                <button class="filter-btn" onclick="filterWorks('maya', this)">
+                    <i class="fa-solid fa-cube"></i> Maya & 3D
+                </button>
+            </div>
+
+            <!-- Works Grid -->
+            <div class="works-grid" id="worksGrid">
+
+                <!-- 1. CHAYA — Specialty Tea Shop Menu (UPDATED WITH 2 IMAGES) -->
+                <div class="work-card tilt-card" data-category="indesign" onclick="openProjectModal(
+                    'ചായാ (Chaya) — Specialty Tea Shop Menu',
+                    'Adobe InDesign & Vector Illustration',
+                    'Designed a complete two-page specialty cafe menu and brand illustration for \'ചായാ (TEA / COFFEE / MORE)\'. Features custom character illustration on the front cover and a structured dark-theme editorial layout organizing Classic Teas, Specialty Teas, Milk & Chocolate, Cold Brews, and Extras with clear ₹ pricing hierarchy.',
+                    [
+                        { src: 'assets/chaya-cover.png', caption: 'Page 1: ചായാ — Front Cover Character Illustration' },
+                        { src: 'assets/chaya-menu.png', caption: 'Page 2: ചായാ — Editorial Menu Layout & Pricing Architecture' }
+                    ]
+                )">
+                    <div class="work-thumb" style="background: linear-gradient(135deg, #3d2616, #d4a017);">
+                        <span class="work-software-tag">InDesign & Illustration</span>
+                        <span class="multi-img-badge"><i class="fa-regular fa-images"></i> 2 Pages Inside</span>
+                        <img src="assets/chaya-cover.jpg" alt="Chaya Tea Shop Menu Cover" onerror="this.style.display='none'">
+                        <i class="fa-solid fa-mug-hot"></i>
+                    </div>
+                    <div class="work-info">
+                        <h3>'ചായാ' Specialty Tea Menu</h3>
+                        <p>Custom character cover art & dark-themed editorial menu architecture for "ചായാ (Tea / Coffee / More)".</p>
+                        <span class="view-more-link">Click to view both pages <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                    </div>
+                </div>
+
+                <!-- 2. The Sea Book -->
+                <div class="work-card tilt-card" data-category="indesign" onclick="openProjectModal(
+                    'The Sea Book — 12-Page Children’s Storybook',
+                    'Adobe InDesign & Illustrator',
+                    'Authored the original story narrative and developed custom vector illustrations and 12-page print-ready book layouts by seamlessly integrating Illustrator files into Adobe InDesign.',
+                    [
+                        { src: 'assets/sea-book.jpg', caption: 'The Sea Book — Illustrated Spread' }
+                    ]
+                )">
+                    <div class="work-thumb" style="background: linear-gradient(135deg, #4cc9f0, #480ca8);">
+                        <span class="work-software-tag">InDesign</span>
+                        <img src="assets/sea-book.jpg" alt="The Sea Book" onerror="this.style.display='none'">
+                        <i class="fa-solid fa-book-open-reader"></i>
+                    </div>
+                    <div class="work-info">
+                        <h3>'The Sea Book' Storybook</h3>
+                        <p>12-page illustrated children's storybook narrative and editorial page layout.</p>
+                        <span class="view-more-link">Click to view project <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                    </div>
+                </div>
+
+                <!-- 3. Magic City -->
+                <div class="work-card tilt-card" data-category="illustrator" onclick="openProjectModal(
+                    'Magic City — Brand Identity & Inauguration',
+                    'Adobe Illustrator & Video Trailer',
+                    'Developed the complete visual branding, custom vector logo graphics, and promotional video trailer concepts for the grand inauguration of Magic City (Baby Product Enterprise) in Kottayam on October 2, 2026.',
+                    [
+                        { src: 'assets/magic-city.jpg', caption: 'Magic City — Brand Logo & Inauguration Identity' }
+                    ]
+                )">
+                    <div class="work-thumb" style="background: linear-gradient(135deg, #ff9a00, #ff2a85);">
+                        <span class="work-software-tag">Illustrator</span>
+                        <img src="assets/magic-city.jpg" alt="Magic City" onerror="this.style.display='none'">
+                        <i class="fa-solid fa-wand-sparkles"></i>
+                    </div>
+                    <div class="work-info">
+                        <h3>Magic City Branding</h3>
+                        <p>Logo graphics, visual identity & inauguration trailer for baby product enterprise in Kottayam.</p>
+                        <span class="view-more-link">Click to view project <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                    </div>
+                </div>
+
+                <!-- 4. BABA Land -->
+                <div class="work-card tilt-card" data-category="illustrator" onclick="openProjectModal(
+                    'BABA Land — Tetra Pack & Logo Design',
+                    'Adobe Illustrator & Packaging Mockups',
+                    'Designed vibrant tetra pack packaging layouts, 3D packaging mockups, and custom vector logo integrations for the water theme park BABA Land.',
+                    [
+                        { src: 'assets/baba-land.jpg', caption: 'BABA Land — Tetra Pack Mockup & Logo Design' }
+                    ]
+                )">
+                    <div class="work-thumb" style="background: linear-gradient(135deg, #00b4d8, #7209b7);">
+                        <span class="work-software-tag">Illustrator</span>
+                        <img src="assets/baba-land.jpg" alt="BABA Land" onerror="this.style.display='none'">
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
+                    <div class="work-info">
+                        <h3>BABA Land Packaging</h3>
+                        <p>Tetra pack packaging layouts, mockups, and logo integration for water theme park.</p>
+                        <span class="view-more-link">Click to view project <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                    </div>
+                </div>
+
+                <!-- 5. Birthstone -->
+                <div class="work-card tilt-card" data-category="photoshop" onclick="openProjectModal(
+                    'Birthstone — Short Film Key Art & Posters',
+                    'Adobe Photoshop • SP Films',
+                    'Created high-impact cinematic promotional posters, color grading, and dramatic key art for the independent short film Birthstone produced under SP Films.',
+                    [
+                        { src: 'assets/birthstone.jpg', caption: 'Birthstone — Official Short Film Poster' }
+                    ]
+                )">
+                    <div class="work-thumb" style="background: linear-gradient(135deg, #3a0ca3, #f72585);">
+                        <span class="work-software-tag">Photoshop</span>
+                        <img src="assets/birthstone.jpg" alt="Birthstone Film" onerror="this.style.display='none'">
+                        <i class="fa-solid fa-film"></i>
+                    </div>
+                    <div class="work-info">
+                        <h3>'Birthstone' Film Poster</h3>
+                        <p>Cinematic poster manipulation and promotional key art for independent short film.</p>
+                        <span class="view-more-link">Click to view project <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                    </div>
+                </div>
+
+                <!-- 6. Team Xception -->
+                <div class="work-card tilt-card" data-category="photoshop" onclick="openProjectModal(
+                    'Team Xception — Open Audition Posters',
+                    'Adobe Photoshop',
+                    'Designed energetic street-style event posters, custom typography layouts, and social media promotional materials for the open audition hosted by dance crew Team Xception.',
+                    [
+                        { src: 'assets/team-xception.jpg', caption: 'Team Xception — Open Audition Event Poster' }
+                    ]
+                )">
+                    <div class="work-thumb" style="background: linear-gradient(135deg, #f72585, #ffbe0b);">
+                        <span class="work-software-tag">Photoshop</span>
+                        <img src="assets/team-xception.jpg" alt="Team Xception" onerror="this.style.display='none'">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div class="work-info">
+                        <h3>Team Xception Audition</h3>
+                        <p>Dynamic event posters and promotional visuals for dance group open audition.</p>
+                        <span class="view-more-link">Click to view project <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                    </div>
+                </div>
+
+                <!-- 7. 3D & Glassmorphism Assets -->
+                <div class="work-card tilt-card" data-category="maya" onclick="openProjectModal(
+                    '3D Visuals, Glassmorphism & Product Mockups',
+                    'Autodesk Maya & 3D Textures',
+                    'Explored 3D modeling, realistic lighting, glassmorphism UI textures, and minimalist 3D product renders for digital branding and social media carousels.',
+                    [
+                        { src: 'assets/maya-3d.jpg', caption: 'Autodesk Maya — 3D Asset & Lighting Render' }
+                    ]
+                )">
+                    <div class="work-thumb" style="background: linear-gradient(135deg, #00f5d4, #4361ee);">
+                        <span class="work-software-tag">Maya 3D</span>
+                        <img src="assets/maya-3d.jpg" alt="3D Render" onerror="this.style.display='none'">
+                        <i class="fa-solid fa-cubes"></i>
+                    </div>
+                    <div class="work-info">
+                        <h3>3D Assets & Glass Textures</h3>
+                        <p>3D product visualization, lighting, and glassmorphism design assets.</p>
+                        <span class="view-more-link">Click to view project <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= 5. SP FILMS & MUSIC SECTION ================= -->
+        <section id="spfilms" class="page-section">
+            <div class="section-header">
+                <h2>SP Films & Music Studio</h2>
+                <p>Where filmmaking, visual storytelling, and original Malayalam compositions meet</p>
+            </div>
+
+            <div class="spfilms-grid">
+                <!-- Left: Films & Visual Productions -->
+                <div class="glass-card tilt-card">
+                    <h3 style="font-size: 1.5rem; color: var(--accent-3); margin-bottom: 22px;">
+                        <i class="fa-solid fa-clapperboard"></i> Film & Video Productions
+                    </h3>
+
+                    <div class="film-showcase-card">
+                        <span class="badge" style="margin-bottom: 10px;">Short Film • Nov 2025</span>
+                        <h4 style="font-size: 1.35rem; margin-bottom: 8px;">Birthstone</h4>
+                        <p style="color: var(--text-dim); font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px;">
+                            An independent short film produced under the banner of <strong>SP Films</strong>, featuring custom key art, poster design, and atmospheric visual storytelling.
+                        </p>
+                        <span style="color: var(--accent-4); font-size: 0.88rem; font-weight: 600;">
+                            <i class="fa-solid fa-star"></i> Direction • Poster Design • Production
+                        </span>
+                    </div>
+
+                    <div class="film-showcase-card">
+                        <span class="badge" style="margin-bottom: 10px;">Commercial Trailer • Oct 2026</span>
+                        <h4 style="font-size: 1.35rem; margin-bottom: 8px;">Magic City Inauguration Trailer</h4>
+                        <p style="color: var(--text-dim); font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px;">
+                            Promotional video concepts, motion graphics, and brand reveal trailer created for Magic City in Kottayam.
+                        </p>
+                        <span style="color: var(--accent-3); font-size: 0.88rem; font-weight: 600;">
+                            <i class="fa-solid fa-video"></i> Brand Reveal • Visual Concept
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Right: Original Malayalam Music & FL Studio -->
+                <div class="glass-card tilt-card">
+                    <h3 style="font-size: 1.5rem; color: var(--accent-4); margin-bottom: 10px;">
+                        <i class="fa-solid fa-headphones-simple"></i> Original Malayalam Tracks
+                    </h3>
+                    <p style="color: var(--text-dim); font-size: 0.92rem; margin-bottom: 22px;">
+                        Lyrics authored in Malayalam & produced using <strong>FL Studio</strong> across hip-hop, melodic, and background score genres.
+                    </p>
+
+                    <!-- Track 1 -->
+                    <div class="music-track" id="track1">
+                        <div class="track-meta">
+                            <button class="play-btn" onclick="toggleAudio('audio1', 'track1', this)">
+                                <i class="fa-solid fa-play"></i>
+                            </button>
+                            <div>
+                                <h4 style="font-size: 1.05rem;">നിനക്കൊപ്പം (Ninakkoppam)</h4>
+                                <p style="color: var(--text-dim); font-size: 0.82rem;">Original Lyrics & Composition • SP Films</p>
+                            </div>
+                        </div>
+                        <div class="equalizer">
+                            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                        </div>
+                        <audio id="audio1" src="assets/ninakkoppam.mp3"></audio>
+                    </div>
+
+                    <!-- Track 2 -->
+                    <div class="music-track" id="track2">
+                        <div class="track-meta">
+                            <button class="play-btn" onclick="toggleAudio('audio2', 'track2', this)">
+                                <i class="fa-solid fa-play"></i>
+                            </button>
+                            <div>
+                                <h4 style="font-size: 1.05rem;">നിലാവിന്റെ സാക്ഷിയായി (Nilavinte Sakshiyayi)</h4>
+                                <p style="color: var(--text-dim); font-size: 0.82rem;">Malayalam Melodic Track • FL Studio</p>
+                            </div>
+                        </div>
+                        <div class="equalizer">
+                            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                        </div>
+                        <audio id="audio2" src="assets/nilavinte.mp3"></audio>
+                    </div>
+
+                    <!-- Track 3 -->
+                    <div class="music-track" id="track3">
+                        <div class="track-meta">
+                            <button class="play-btn" onclick="toggleAudio('audio3', 'track3', this)">
+                                <i class="fa-solid fa-play"></i>
+                            </button>
+                            <div>
+                                <h4 style="font-size: 1.05rem;">ബിമിത & ടിറ്റോ – തീയും താളവും</h4>
+                                <p style="color: var(--text-dim); font-size: 0.82rem;">Rhythm & Hip-Hop Fusion • Original Lyrics</p>
+                            </div>
+                        </div>
+                        <div class="equalizer">
+                            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                        </div>
+                        <audio id="audio3" src="assets/theeyum-thaalavum.mp3"></audio>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 6. CONTACT SECTION ================= -->
+        <section id="contact" class="page-section">
+            <div class="section-header">
+                <h2>Let's Create Together</h2>
+                <p>Available for Graphic Design, Illustration, Branding & Creative Collaborations</p>
+            </div>
+
+            <div class="contact-grid">
+                <!-- Left Contact Info -->
+                <div class="glass-card tilt-card">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 12px; color: var(--accent-3);">Connect With Me</h3>
+                    <p style="color: var(--text-dim); line-height: 1.7; margin-bottom: 20px;">
+                        Whether you need a brand identity, custom vector illustration, book layout, packaging mockup, or film/music production via <strong>SP Films</strong>, feel free to reach out!
+                    </p>
+
+                    <div class="social-links-grid">
+                        <a href="https://dribbble.com" target="_blank" class="social-card">
+                            <i class="fa-brands fa-dribbble" style="color: #ea4c89; font-size: 1.4rem;"></i> Dribbble
+                        </a>
+                        <a href="https://behance.net" target="_blank" class="social-card">
+                            <i class="fa-brands fa-behance" style="color: #1769ff; font-size: 1.4rem;"></i> Behance
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="social-card">
+                            <i class="fa-brands fa-instagram" style="color: #ff2a85; font-size: 1.4rem;"></i> Instagram
+                        </a>
+                        <a href="https://youtube.com" target="_blank" class="social-card">
+                            <i class="fa-brands fa-youtube" style="color: #ff0000; font-size: 1.4rem;"></i> SP Films
+                        </a>
+                        <a href="mailto:sandilputhur@gmail.com" class="social-card" style="grid-column: span 2;">
+                            <i class="fa-solid fa-envelope" style="color: var(--accent-3); font-size: 1.3rem;"></i> E-mail Sandil P. T. Puthur
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Message Form -->
+                <div class="glass-card tilt-card">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 18px;">Send a Quick Message</h3>
+                    <form onsubmit="handleContactSubmit(event)">
+                        <div class="form-group">
+                            <label>Your Name</label>
+                            <input type="text" class="form-input" placeholder="Enter your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Your Email</label>
+                            <input type="email" class="form-input" placeholder="Enter your email address" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Project Details / Message</label>
+                            <textarea class="form-input" rows="4" placeholder="Tell me about your branding, illustration, or film project..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+                            Send Message <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Project Details Popup Modal (Supports Single or Multiple Images) -->
+    <div class="modal-overlay" id="projectModal" onclick="closeModal(event)">
+        <div class="modal-box">
+            <button class="close-modal" onclick="document.getElementById('projectModal').classList.remove('show-modal')">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <span class="badge" id="modalTool" style="margin-bottom:15px;">Software</span>
+            <h2 id="modalTitle" style="font-size: 1.9rem; margin-bottom: 12px;">Project Title</h2>
+            <p id="modalDesc" style="color: var(--text-dim); line-height: 1.8; font-size: 1.02rem; margin-bottom: 20px;">
+                Project description goes here.
+            </p>
+            <p style="font-size: 0.85rem; color: var(--accent-3); margin-bottom: 10px;">
+                <i class="fa-solid fa-magnifying-glass-plus"></i> ഏത് ചിത്രത്തിലും ക്ലിക്ക് ചെയ്താൽ ഫുൾ സ്ക്രീനിൽ വലുതായി കാണാം:
+            </p>
+            <!-- Dynamic Multi-Image Container -->
+            <div class="modal-gallery" id="modalGallery"></div>
+        </div>
+    </div>
+
+    <!-- Fullscreen Zoom Lightbox -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightboxImg" src="" alt="Full View">
+    </div>
+
+    <script>
+        // 1. Custom Cursor Glow Follower
+        const cursorGlow = document.getElementById('cursorGlow');
+        document.addEventListener('mousemove', (e) => {
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
+        });
+
+        // 2. Navigation Tab Switching
+        function switchTab(sectionId, btnElement) {
+            document.querySelectorAll('.page-section').forEach(sec => {
+                sec.classList.remove('active-section');
+            });
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            document.getElementById(sectionId).classList.add('active-section');
+            if (btnElement) {
+                btnElement.classList.add('active');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function triggerNav(sectionId) {
+            const buttons = document.querySelectorAll('.nav-btn');
+            const map = { 'home': 0, 'about': 1, 'education': 2, 'works': 3, 'spfilms': 4, 'contact': 5 };
+            switchTab(sectionId, buttons[map[sectionId]]);
+        }
+
+        // 3. Filter Works by Software Category
+        function filterWorks(category, btnElement) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active-filter');
+            });
+            btnElement.classList.add('active-filter');
+
+            const cards = document.querySelectorAll('.work-card');
+            cards.forEach(card => {
+                const itemCat = card.getAttribute('data-category');
+                if (category === 'all' || itemCat === category) {
+                    card.style.display = 'block';
+                    card.style.animation = 'none';
+                    card.offsetHeight; // trigger reflow
+                    card.style.animation = 'sectionEntrance 0.45s ease forwards';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // 4. Project Detail Modal with Multi-Image Support
+        function openProjectModal(title, tool, description, imagesArray) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalTool').innerText = tool;
+            document.getElementById('modalDesc').innerText = description;
+            
+            const gallery = document.getElementById('modalGallery');
+            gallery.innerHTML = '';
+
+            imagesArray.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'gallery-item';
+                card.innerHTML = `
+                    <img src="${item.src}" alt="${item.caption}" onclick="openLightbox('${item.src}')" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="placeholder-card" style="display:none;">
+                        <i class="fa-regular fa-image" style="font-size: 2rem; color: var(--accent-3); margin-bottom: 10px;"></i>
+                        <p>Save image as:<br><code style="color:var(--accent-4);">${item.src}</code></p>
+                    </div>
+                    <div class="gallery-caption">${item.caption}</div>
+                `;
+                gallery.appendChild(card);
+            });
+
+            document.getElementById('projectModal').classList.add('show-modal');
+        }
+
+        function openLightbox(src) {
+            const lb = document.getElementById('lightbox');
+            document.getElementById('lightboxImg').src = src;
+            lb.classList.add('active');
+        }
+
+        function closeModal(e) {
+            if (e.target.id === 'projectModal') {
+                document.getElementById('projectModal').classList.remove('show-modal');
+            }
+        }
+
+        // 5. Audio Player & Equalizer Animation for SP Films Music
+        let currentAudio = null;
+        let currentTrackBox = null;
+        let currentBtn = null;
+
+        function toggleAudio(audioId, trackBoxId, btn) {
+            const audio = document.getElementById(audioId);
+            const trackBox = document.getElementById(trackBoxId);
+
+            if (currentAudio && currentAudio !== audio) {
+                currentAudio.pause();
+                currentTrackBox.classList.remove('playing');
+                currentBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+            }
+
+            if (audio.paused) {
+                audio.play().catch(() => {
+                    trackBox.classList.toggle('playing');
+                    const isPlaying = trackBox.classList.contains('playing');
+                    btn.innerHTML = isPlaying ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
+                });
+                trackBox.classList.add('playing');
+                btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                currentAudio = audio;
+                currentTrackBox = trackBox;
+                currentBtn = btn;
+            } else {
+                audio.pause();
+                trackBox.classList.remove('playing');
+                btn.innerHTML = '<i class="fa-solid fa-play"></i>';
+            }
+        }
+
+        // 6. Subtle 3D Tilt Hover Effect on Cards
+        document.querySelectorAll('.tilt-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -4;
+                const rotateY = ((x - centerX) / centerX) * 4;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+            });
+        });
+
+        // 7. Contact Form Submission Feedback
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            alert('Thank you! Your message has been sent to Sandil P. T. Puthur.');
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
